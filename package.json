@@ -1,0 +1,82 @@
+{
+  "name": "@sunderapps/dialog",
+  "author": "Samuel T Underwood",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "A library for responsive, accessible dialogs, modals, lightboxes, etc.",
+  "keywords": [
+    "dialog",
+    "accessibility",
+    "responsive"
+  ],
+  "homepage": "https://github.com/Sunder-Apps/dialog#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sunder-Apps/dialog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sunder-Apps/dialog/issues"
+  },
+  "main": "./dist/js/index.min.js",
+  "types": "./dist/js/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/**/*.{css,js,d.ts,map}"
+  ],
+  "directories": {
+    "dist": "./dist",
+    "doc": "./docs",
+    "src": "./src",
+    "test": "./test"
+  },
+  "scripts": {
+    "update": "npm update --save @sunderapps/util",
+    "prepare": "npm run build",
+    "preversion": "npm i && npm run test",
+    "version": "npm publish && git add -A",
+    "postversion": "git push && git push --tags",
+    "build": "npm run build:dev && npm run build:prod && npm run build:index:dev && npm run build:index:prod && npm run build:tsdoc && npm run build:sassdoc",
+    "build:dev": "webpack --config webpack.config.dev.ts",
+    "build:prod": "webpack",
+    "build:index:dev": "webpack --config webpack.index.dev.ts",
+    "build:index:prod": "webpack --config webpack.index.ts",
+    "build:tsdoc": "typedoc",
+    "build:sassdoc": "sassdoc ./src/scss -p > ./docs/sassdoc.json",
+    "watch": "npm run watch:dev",
+    "watch:dev": "webpack --watch --config webpack.config.dev.ts",
+    "watch:prod": "webpack --watch",
+    "watch:tsdoc": "typedoc --watch",
+    "serve": "webpack serve --config webpack.config.dev.ts",
+    "clean": "rimraf dist docs",
+    "test": "echo 'Run tests here'"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@babel/preset-env": "^7.19.4",
+    "@types/node": "^18.11.8",
+    "@types/webpack": "^5.28.0",
+    "babel-loader": "^9.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.1",
+    "mini-css-extract-plugin": "^2.6.1",
+    "rimraf": "^3.0.2",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "sassdoc": "^2.7.4",
+    "ts-loader": "^9.4.1",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.23.19",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-lowercase-name": "^1.0.4",
+    "webpack-merge": "^5.8.0",
+    "webpack-remove-empty-scripts": "^1.0.1"
+  },
+  "dependencies": {
+    "@sunderapps/util": "^0.1.31"
+  }
+}
